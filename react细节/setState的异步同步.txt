@@ -1,0 +1,22 @@
+在组件生命周期或react合成事件中，他是异步的
+在setTimeout或原生dom事件中，他是同步的。
+底层对组件的上下文进行了判断， 返回Sync(同步)或Batched(批处理)
+
+
+如何获取更新之后的state值：
+  setState()的第二个参数可以传入一个回调函数，在这个回调函数中去访问
+
+setState中值的合并：
+  底层使用了Object.assign()进行了一个合并
+
+setState本身的合并：
+  也是用了一个Object.assign()
+
+setState累加：
+  给setsetState中传入一个函数
+  setState((prevState, props) => {
+    counter: prevState + 1
+  })
+
+底层是进行了一个do while循环的，通过判断payload是不是一个函数，是的话进行累加，如果
+payload是一个对象的话，进行合并。

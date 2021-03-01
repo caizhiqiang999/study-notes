@@ -1,0 +1,27 @@
+promise最基本的使用：
+  new Promise((resolve, reject) => {
+    在这里面进行异步的操作
+    resolve(异步结果)调用这个方法后，会在then里面对异步的结果进行处理
+  }).then(() => {
+    对异步结果进行处理
+  })
+
+  如果reject(参数)的话，会在catch里处理错误结果。
+
+  promise()有三种状态：等待状态  满足状态  拒绝状态
+
+  其实在then里可以传入两个函数作为参数,第一个函数在resolve时回调,第二个函数在reject时回调
+
+  promise的链式调用
+
+  promise.all方法：
+    promise.all([
+      new Promise((resolve, reject) => {
+        异步操作1
+      }),
+      new Promise((resolve, reject) => {
+        异步操作2
+      })
+    ]).then(results => {     results是一个数组,results[0]是异步操作1的结果,results[1]是异步操作2的结果
+      当两个promise都完成时,在这里进行结果的处理
+    })

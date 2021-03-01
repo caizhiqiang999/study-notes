@@ -1,0 +1,5 @@
+如果在DOM上绑定过多的事件处理函数，页面响应和内存占用都会受到影响。react实现了一个中间层---syntheticEvent(合成事件)
+
+以onClick为例：
+  react并没有将click事件绑定到DOM上面，而是在document处进行监听。当事件冒泡到document时，react
+  将事件内容封装，并交由真正的处理函数运行。

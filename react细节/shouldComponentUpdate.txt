@@ -1,0 +1,22 @@
+shouldComponentUpdate()这个函数是决定组件的render函数执行的。
+默认返回true,表示render函数会执行
+
+可以给这个函数传入两个参数nextProps, nextState(新的props与新的state)
+然后在函数里面进行判断，看要不要执行render函数， 渲染组件。
+shouldComponentUpdate(nextProps, nextState) {
+  if(this.state.counter !== nextState.counter) {
+    return true
+  }
+  return false
+}
+
+
+但是想用shouldComponentUpdate决定组件是否重新渲染时，它是有很多的不足的。
+比如这个函数是类所特有的，在函数式组件中应该怎么办
+比如一个项目中有成百个组件，是不是每个组件中都要写一遍这个函数...
+
+有没有什么解决方法呢，当然有：
+  让组件继承自PureComponent,但这个东西只能在类组件中用
+  那如果在函数式组件中呢？memo: 它其实是一个高阶组件
+
+  以上解决方案都是在shallowEqual()中进行过一个浅层比较
